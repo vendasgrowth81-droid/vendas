@@ -306,13 +306,14 @@
     
     displayMessage('Consultando...', '');
     
-    const formData = new FormData();
-    formData.append('cpf', cpf);
-    
     const apiUrl = '/api/consultar';
-    fetch(apiUrl, { method: 'POST', body: formData })
-        .then(response => response.json())
-        .then(data => {
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cpf })
+    })
+    .then(response => response.json())
+    .then(data => {
             if (data.success) {
                 const nomeRet = data.nome && data.nome.trim() ? data.nome : 'Usuário';
                 const cpfFormatado = data.cpf || cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
