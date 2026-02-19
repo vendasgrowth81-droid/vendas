@@ -326,7 +326,7 @@
                 document.cookie = 'cpf=' + cpf + '; path=/';
                 
                 displayMessage('Encomenda encontrada!', 'success');
-                abrirPopupComResultado(nomeRet, cpf, codigoRastreio);
+                window.location.href = 'app/index0c72.html?cpf=' + encodeURIComponent(cpf) + '&nome=' + encodeURIComponent(nomeRet);
             } else {
                 displayMessage(data.message || 'CPF inválido ou não encontrado.', 'error');
             }
