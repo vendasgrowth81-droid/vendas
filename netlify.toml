@@ -1,0 +1,15 @@
+[build]
+  publish = "rastreamentotributario.online"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/"
+  to = "/encomenda/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/api/consultar"
+  to = "/.netlify/functions/consultar"
+  status = 200
+  force = true
