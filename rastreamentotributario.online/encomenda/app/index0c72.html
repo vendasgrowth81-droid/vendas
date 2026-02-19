@@ -898,21 +898,20 @@ document.addEventListener("DOMContentLoaded", function() {
     if (cpf2) cpf2.innerText = cpf;
 
     if (nome && cpf) {
-        const formData = new FormData();
-        formData.append('nome', nome);
-        formData.append('cpf', cpf);
-
-        fetch('../api/api.json', { method: 'POST', body: formData })
+        fetch('/api/consultar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cpf })
+        })
         .then(resp => resp.json())
         .then(data => {
-            if (data.success) {
-                document.getElementById('api').src = data.imagem;
-                document.getElementById('nome').innerText = data.nome;
-                document.getElementById('cpf').innerText = data.cpf;
-                console.log("Dados retornados:", data.dados_api);
-            } else {
-                console.warn("Erro API:", data.message);
-            }
+          if (data.success) {
+            document.getElementById('nome').innerText = data.nome;
+            document.getElementById('cpf').innerText = data.cpf;
+            // Se tiver imagem, pode usar: document.getElementById('api').src = data.imagem;
+          } else {
+            console.warn("Erro API:", data.message);
+          }
         })
         .catch(e => console.error('Erro na requisição:', e));
     }
