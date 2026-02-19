@@ -41,7 +41,7 @@ exports.handler = async (event) => {
       };
     }
 
-    const nome = `Consumidor ${cpf.slice(-4)}`;
+    let nome = `Consumidor ${cpf.slice(-4)}`;
     const codigoRastreio = 'NC 654 471 898 BR';
 
     return {
